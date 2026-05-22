@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTD Value List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        exclusive: '#3b82f6',
+                        godly: '#a855f7',
+                        mythic: '#f59e0b',
+                        legendary: '#14b8a6',
+                        dark: '#0a0f1f',
+                        card: '#131b30',
+                        yellowBox: '#facc15',
+                        blueBox: '#22d3ee',
+                        redBtn: '#dc2626',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s ease infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+
+        const units = [
+            {name: "🔥 Upgraded titan cinemaman", value: 12450, sign: "🔥"},
+            {name: "🔹 Engineer", value: 9550, sign: "🔹"},
+            {name: "🔹 Spider TV", value: 5000, sign: "🔹"},
+            {name: "🔹 Tv Woman", value: 500, sign: "🔹"},
+            {name: "🔹 Jetpack Cameraman", value: 900, sign: "🔹"},
+            {name: "🔹 Green Laser", value: 1250, sign: "🔹"},
+            {name: "🔹 Titan Cameraman", value: 750, sign: "🔹"},
+            {name: "🔥 Titan Pumpkin Man", value: 55000, sign: "🔥"},
+            {name: "⭐ Corrupted Cameraman", value: 5750, sign: "⭐"},
+            {name: "⭐ Upgraded Titan Cameraman", value: 1850, sign: "⭐"},
+            {name: "⭐ Upgraded Titan Speakerman", value: 1650, sign: "⭐"},
+            {name: "⭐ Titan Cinemaman", value: 1500, sign: "⭐"},
+            {name: "💠 Speakerwoman", value: 125, sign: "💠"},
+            {name: "💠 Mech", value: 125, sign: "💠"},
+            {name: "💠 Ninja Cameraman", value: 125, sign: "💠"},
+            {name: "💠 Dark Speakerman", value: 125, sign: "💠"},
+            {name: "💠 Titan TV Man", value: 125, sign: "💠"},
+            {name: "💠 Titan Speakerman", value: 125, sign: "💠"},
+            {name: "💠 Laser Car Cameraman", value: 125, sign: "💠"},
+            {name: "💠 Sinister Cameraman", value: 3150, sign: "💠"},
+        ];
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .bg-gradient-animated {
+                background-size: 400% 400%;
+            }
+            .glow-exclusive {
+                box-shadow: 0 0 15px rgba(59, 130, 246, 0.4), 0 0 30px rgba(59, 130, 246, 0.2);
+            }
+            .glow-godly {
+                box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), 0 0 30px rgba(168, 85, 247, 0.3);
+            }
+            .glow-mythic {
+                box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2);
+            }
+            .glow-legendary {
+                box-shadow: 0 0 15px rgba(20, 184, 166, 0.4), 0 0 30px rgba(20, 184, 166, 0.2);
+            }
+            .border-gradient {
+                border-image: linear-gradient(to right, #6366f1, #a855f7) 1;
+            }
+            .border-yellow {
+                border: 4px solid #facc15 !important;
+                border-radius: 12px;
+            }
+            .border-blue {
+                border: 4px solid #22d3ee !important;
+                border-radius: 12px;
+            }
+            .plus-btn {
+                width: 50px;
+                height: 50px;
+                background: #dc2626;
+                border: 3px solid white;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                cursor: pointer;
+                user-select: none;
+                position: relative;
+            }
+            .dropdown {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: #1a1a1a;
+                border: 2px solid white;
+                border-radius: 8px;
+                width: 240px;
+                max-height: 250px;
+                overflow-y: auto;
+                z-index: 999;
+            }
+            .dropdown div {
+                padding: 8px 12px;
+                cursor: pointer;
+                border-bottom: 1px solid #333;
+                font-size: 14px;
+            }
+            .dropdown div:hover {
+                background: #2d2d2d;
+            }
+            .result-W {
+                color: #22c55e;
+                font-weight: bold;
+                font-size: 24px;
+            }
+            .result-L {
+                color: #ef4444;
+                font-weight: bold;
+                font-size: 24px;
+            }
+            .result-FAIR {
+                color: #facc15;
+                font-weight: bold;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-dark via-slate-900 to-dark bg-gradient-animated animate-gradient font-poppins text-white min-h-screen">
+    <div class="max-w-6xl mx-auto p-4 py-8">
+        <!-- TOP NOTICE -->
+        <div class="text-center mb-4 text-yellow-400 font-semibold text-lg">
+            ⚠️ Turn on desktop layout for better experience in mobile
+        </div>
+
+        <!-- HEADER -->
+        <div class="text-center mb-10">
+            <div class="inline-block mb-3 px-4 py-1 rounded-full bg-primary/10 border border-primary/20">
+                <span class="text-primary font-semibold text-sm">📊 Official Value List</span>
+            </div>
+            <h1 class="text-[clamp(2rem,6vw,3rem)] font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary via-godly to-purple-400 mb-2">
+                BTD VALUE LIST
+            </h1>
+            <p class="text-slate-400 text-lg">Updated Prices & Rarity Tiers</p>
+        </div>
+
+        <!-- SEARCH & SORT -->
+        <div class="flex flex-col md:flex-row gap-4 mb-10">
+            <div class="relative flex-1">
+                <i class="fa fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                <input type="text" id="searchInput" placeholder="Search items..." 
+                    class="w-full bg-card/80 backdrop-blur-sm border border-slate-700/50 rounded-2xl px-12 py-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-lg">
+            </div>
+            <div class="flex gap-2 flex-wrap">
+                <button class="sort-btn active px-5 py-3 rounded-2xl bg-gradient-to-r from-primary to-purple-600 text-white font-semibold transition-all shadow-lg shadow-primary/20" data-sort="default">Default</button>
+                <button class="sort-btn px-5 py-3 rounded-2xl bg-card/80 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600 font-semibold transition-all" data-sort="highest">Highest ↓</button>
+                <button class="sort-btn px-5 py-3 rounded-2xl bg-card/80 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600 font-semibold transition-all" data-sort="lowest">Lowest ↑</button>
+            </div>
+        </div>
+
+        <!-- MAIN YELLOW FRAME CONTAINER -->
+        <div class="border-yellow p-6 mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- TRADE CHECKER -->
+            <div>
+                <h2 class="text-2xl font-bold mb-6 text-center">📈 TRADE CHECKER</h2>
+                <div class="flex gap-4 mb-6">
+                    <div class="flex-1 border border-yellowBox/50 p-4 relative">
+                        <p class="text-yellowBox text-xl font-bold text-center mb-3">Your offer</p>
+                        <div class="relative mb-3">
+                            <div class="plus-btn" onclick="toggleDropdown('yourDropdown')">+</div>
+                            <div class="dropdown" id="yourDropdown"></div>
+                        </div>
+                        <div id="yourUnits" class="text-sm mb-4 min-h-[40px]"></div>
+                        <p class="text-center font-bold text-lg">Gems: <span id="yourGems">0</span></p>
+                    </div>
+                    <div class="flex-1 border border-blueBox/50 p-4 relative">
+                        <p class="text-blueBox text-xl font-bold text-center mb-3">Their offer</p>
+                        <div class="relative mb-3">
+                            <div class="plus-btn" onclick="toggleDropdown('theirDropdown')">+</div>
+                            <div class="dropdown" id="theirDropdown"></div>
+                        </div>
+                        <div id="theirUnits" class="text-sm mb-4 min-h-[40px]"></div>
+                        <p class="text-center font-bold text-lg">Gems: <span id="theirGems">0</span></p>
+                    </div>
+                </div>
+                <div class="text-center mb-6">
+                    <p id="resultText" class="result-FAIR">Fair</p>
+                </div>
+            </div>
+
+            <!-- ROLES SECTION -->
+            <div class="grid grid-cols-2 gap-4">
+                <!-- PARTNERS -->
+                <div class="bg-card/70 rounded-xl p-4">
+                    <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                        <i class="fa fa-handshake-o text-primary"></i> Partners
+                    </h3>
+                    <p class="text-slate-400 text-xs mb-3">Value Range: 25-50% | 1 video = 25%</p>
+                    <div class="p-3 bg-slate-800/50 rounded-lg">
+                        <p class="font-medium">ok_imseikol</p>
+                        <p class="text-green-400 font-bold text-sm">+25% YouTube Partner</p>
+                    </div>
+                </div>
+
+                <!-- DEVELOPERS -->
+                <div class="bg-card/70 rounded-xl p-4">
+                    <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                        <i class="fa fa-code text-primary"></i> Developers
+                    </h3>
+                    <div class="p-3 bg-slate-800/50 rounded-lg">
+                        <p class="font-medium">cat_maneater</p>
+                        <p class="text-green-400 font-bold text-sm">75% Developer</p>
+                    </div>
+                </div>
+
+                <!-- ADMINS -->
+                <div class="bg-card/70 rounded-xl p-4">
+                    <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                        <i class="fa fa-user-circle-o text-primary"></i> Admins
+                    </h3>
+                    <div class="space-y-2">
+                        <div class="p-2 bg-slate-800/50 rounded-lg">
+                            <p class="font-medium text-sm">Hanz</p>
+                            <p class="text-green-400 font-bold text-xs">35% <span class="text-slate-400">(Not playing long)</span></p>
+                        </div>
+                        <div class="p-2 bg-slate-800/50 rounded-lg">
+                            <p class="font-medium text-sm">Mark</p>
+                            <p class="text-green-400 font-bold text-xs">50%</p>
+                        </div>
+                        <div class="p-2 bg-slate-800/50 rounded-lg">
+                            <p class="font-medium text-sm">zeven_201533</p>
+                            <p class="text-green-400 font-bold text-xs">55% <span class="text-slate-400">(everyday)</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OWNER & CO-OWNER -->
+                <div class="bg-card/70 rounded-xl p-4">
+                    <h3 class="text-xl font-bold mb-3 flex items-center gap-2">
+                        <i class="fa fa-trophy text-yellow-400"></i> Owner & Co-Owner
+                    </h3>
+                    <div class="space-y-2">
+                        <div class="p-3 bg-yellow-500/20 rounded-lg border border-yellow-500/30">
+                            <p class="font-bold">PrinceValera0</p>
+                            <p class="text-yellow-400 font-bold">100%</p>
+                        </div>
+                        <div class="p-3 bg-primary/20 rounded-lg border border-primary/30">
+                            <p class="font-bold">ILIA222010</p>
+                            <p class="text-yellow-400 font-bold">95%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- VALUE LIST -->
+        <div id="itemList" class="space-y-4 mb-12">
+            <!-- EXCLUSIVE -->
+            <div class="mt-8 mb-4">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-1 h-8 bg-exclusive rounded-full"></div>
+                    <h3 class="text-xl font-bold text-exclusive">🔹 Exclusive</h3>
+                </div>
+            </div>
+            <div class="item group" data-name="Engineer" data-value="9550">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-exclusive/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Engineer</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">9,550</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-exclusive/20 text-exclusive glow-exclusive">Exclusive</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Spider TV" data-value="5000">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-exclusive/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Spider TV</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">5,000</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-exclusive/20 text-exclusive glow-exclusive">Exclusive</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Tv Woman" data-value="500">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-exclusive/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Tv Woman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">500</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-exclusive/20 text-exclusive glow-exclusive">Exclusive</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Jetpack Cameraman" data-value="900">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-exclusive/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Jetpack Cameraman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">900</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-exclusive/20 text-exclusive glow-exclusive">Exclusive</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Green Laser" data-value="1250">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-exclusive/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Green Laser</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">1,250</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-exclusive/20 text-exclusive glow-exclusive">Exclusive</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Titan Cameraman" data-value="750">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-exclusive/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Titan Cameraman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">750</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-exclusive/20 text-exclusive glow-exclusive">Exclusive</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- GODLY -->
+            <div class="mt-8 mb-4">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-1 h-8 bg-godly rounded-full animate-pulse"></div>
+                    <h3 class="text-xl font-bold text-godly">🔥 Godly</h3>
+                </div>
+            </div>
+            <div class="item group" data-name="Upgraded Titan Cinemaman" data-value="12450">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-godly/40 hover:border-godly/70 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Upgraded Titan Cinemaman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">12,450</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-godly/20 text-godly glow-godly">Godly</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Titan Pumpkin Man" data-value="55000">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-godly/40 hover:border-godly/70 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Titan Pumpkin Man</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">55,000</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-godly/20 text-godly glow-godly">Godly</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- MYTHIC -->
+            <div class="mt-8 mb-4">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-1 h-8 bg-mythic rounded-full"></div>
+                    <h3 class="text-xl font-bold text-mythic">⭐ Mythic</h3>
+                </div>
+            </div>
+            <div class="item group" data-name="Corrupted Cameraman" data-value="5750">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-mythic/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Corrupted Cameraman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">5,750</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-mythic/20 text-mythic glow-mythic">Mythic</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Upgraded Titan Cameraman" data-value="1850">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-mythic/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Upgraded Titan Cameraman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">1,850</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-mythic/20 text-mythic glow-mythic">Mythic</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Upgraded Titan Speakerman" data-value="1650">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-mythic/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Upgraded Titan Speakerman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">1,650</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-mythic/20 text-mythic glow-mythic">Mythic</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Titan Cinemaman" data-value="1500">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-mythic/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Titan Cinemaman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">1,500</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-mythic/20 text-mythic glow-mythic">Mythic</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- LEGENDARY FULL NO CUTS -->
+            <div class="mt-8 mb-4">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-1 h-8 bg-legendary rounded-full"></div>
+                    <h3 class="text-xl font-bold text-legendary">💠 Legendary</h3>
+                </div>
+            </div>
+            <div class="item group" data-name="Speakerwoman" data-value="125">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Speakerwoman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">125</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Mech" data-value="125">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Mech</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">125</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Ninja Cameraman" data-value="125">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Ninja Cameraman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">125</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Dark Speakerman" data-value="125">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Dark Speakerman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">125</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Titan TV Man" data-value="125">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Titan TV Man</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">125</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Titan Speakerman" data-value="125">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Titan Speakerman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">125</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Laser Car Cameraman" data-value="125">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Laser Car Cameraman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">125</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+            <div class="item group" data-name="Sinister Cameraman" data-value="3150">
+                <div class="p-5 bg-card/70 backdrop-blur-sm rounded-2xl border border-slate-700/40 hover:border-legendary/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex justify-between items-center">
+                    <span class="font-medium text-lg">Sinister Cameraman</span>
+                    <span class="flex items-center gap-2">
+                        <span class="text-slate-300 font-semibold">3,150</span>
+                        <span class="px-3 py-1 rounded-full text-sm font-bold bg-legendary/20 text-legendary glow-legendary">Legendary</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+            </div>
+
+    <script>
+        function loadUnits() {
+            const yourDrop = document.getElementById('yourDropdown');
+            const theirDrop = document.getElementById('theirDropdown');
+            yourDrop.innerHTML = ""; theirDrop.innerHTML = "";
+            units.forEach(unit => {
+                const txt = `${unit.name} ${unit.value} gems`;
+                const d1 = document.createElement('div'); d1.textContent = txt; d1.onclick = ()=>addUnit('your',unit); yourDrop.appendChild(d1);
+                const d2 = document.createElement('div'); d2.textContent = txt; d2.onclick = ()=>addUnit('their',unit); theirDrop.appendChild(d2);
+            });
+        }
+        function toggleDropdown(id) {
+            document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none');
+            document.getElementById(id).style.display='block';
+        }
+        function addUnit(who, unit) {
+            const list = document.getElementById(who+'Units');
+            const gems = document.getElementById(who+'Gems');
+            const p = document.createElement('p'); p.textContent = `${unit.name} +${unit.value}`; list.appendChild(p);
+            gems.textContent = +gems.textContent + unit.value;
+            document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none'); updateResult();
+        }
+        function updateResult() {
+            const y = +document.getElementById('yourGems').textContent;
+            const t = +document.getElementById('theirGems').textContent;
+            const res = document.getElementById('resultText');
+            res.textContent = t>y ? "W" : t<y ? "L" : "Fair";
+            res.className = t>y ? "result-W" : t<y ? "result-L" : "result-FAIR";
+        }
+        document.addEventListener('click', e=>{if(!e.target.classList.contains('plus-btn')) document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none')});
+        document.getElementById('searchInput').addEventListener('input', e=>{
+            const s = e.target.value.toLowerCase();
+            document.querySelectorAll('.item').forEach(i=>i.style.display = i.dataset.name.toLowerCase().includes(s) ? 'block' : 'none');
+        });
+        document.querySelectorAll('.sort-btn').forEach(btn=>{
+            btn.addEventListener('click', function(){
+                document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active','bg-gradient-to-r','from-primary','to-purple-600','shadow-primary/20'));
+                this.classList.add('active','bg-gradient-to-r','from-primary','to-purple-600','shadow-primary/20');
+                const sort = this.dataset.sort;
+                const items = Array.from(document.querySelectorAll('.item'));
+                if(sort=='highest') items.sort((a,b)=>b.dataset.value - a.dataset.value);
+                else if(sort=='lowest') items.sort((a,b)=>a.dataset.value - b.dataset.value);
+                else location.reload();
+                document.getElementById('itemList').innerHTML = '';
+                items.forEach(i=>document.getElementById('itemList').appendChild(i));
+            });
+        });
+        window.onload = loadUnits;
+    </script>
+</body>
+</html>
